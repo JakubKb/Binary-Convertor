@@ -18,14 +18,27 @@
       </div>
       <div class="output-wrapper">
         <h2>Output:</h2>
-        <input class="output" />
+        <input class="output" disabled />
       </div>
     </div>
+    <button class="help">click here for help</button>
+    <help-vue :style="{ display: helpDisplay }" />
   </div>
 </template>
 
 <script>
-export default {};
+import helpVue from "./help.vue";
+
+export default {
+  data() {
+    return {
+      helpDisplay: "none",
+    };
+  },
+  components: {
+    helpVue,
+  },
+};
 </script>
 
 <style scoped>
@@ -35,6 +48,7 @@ export default {};
   justify-content: center;
   align-items: center;
   background-color: #222831;
+  flex-direction: column;
   height: 100vh;
   width: 100vw;
 }
@@ -64,6 +78,7 @@ export default {};
   background: transparent;
   border: #76abae 2px solid;
   border-radius: 5px;
+  color: #76abae;
   padding: 5px;
   font-family: "Roboto", sans-serif;
   margin-right: 5px;
@@ -86,6 +101,7 @@ export default {};
   margin-top: 15px;
   height: 200px;
   width: 100%;
+  color: #76abae;
 }
 
 h2 {
@@ -143,5 +159,18 @@ input:checked + label:after {
 
 label:active:after {
   width: 10px;
+}
+
+.help {
+  text-align: center;
+  color: #76abae;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  margin-top: 20px;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
 }
 </style>
