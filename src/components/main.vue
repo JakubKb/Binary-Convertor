@@ -15,7 +15,10 @@
             class="binary-input"
           />
         </div>
-        <div class="output"></div>
+      </div>
+      <div class="output-wrapper">
+        <h2>Output:</h2>
+        <input class="output" />
       </div>
     </div>
   </div>
@@ -42,7 +45,7 @@ export default {};
   -moz-box-shadow: 8px 8px 24px 0px rgba(118, 171, 174, 1);
   box-shadow: 8px 8px 24px 0px rgba(118, 171, 174, 1);
   border-radius: 7px;
-  height: 300px;
+  height: 400px;
   width: 400px;
   padding: 20px;
   display: flex;
@@ -54,6 +57,7 @@ export default {};
   color: #76abae;
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 .binary-input {
@@ -71,6 +75,25 @@ export default {};
   align-items: center;
   justify-content: space-around;
   gap: 5px;
+}
+
+.output {
+  background: transparent;
+  border: #76abae 2px solid;
+  border-radius: 5px;
+  padding: 5px;
+  font-family: "Roboto", sans-serif;
+  margin-top: 15px;
+  height: 200px;
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  color: #76abae;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  margin-top: 15px;
 }
 
 .inputs-row p {
