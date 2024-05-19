@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="content">
+    <div class="content" :style="{ display: contentDisplay }">
       <h1 class="title">Binary converter</h1>
       <div class="binary-input-row">
         <div class="inputs-row">
@@ -21,8 +21,14 @@
         <input class="output" disabled />
       </div>
     </div>
-    <button class="help">click here for help</button>
-    <help-vue :style="{ display: helpDisplay }" />
+    <button
+      class="help"
+      @click="helpToggle"
+      :style="{ display: helpButtonDisplay }"
+    >
+      click here for help
+    </button>
+    <help-vue :style="{ display: helpDisplay }" @goBack="helpToggle" />
   </div>
 </template>
 
@@ -33,10 +39,20 @@ export default {
   data() {
     return {
       helpDisplay: "none",
+      contentDisplay: "flex",
+      helpButtonDisplay: "block",
     };
   },
   components: {
     helpVue,
+  },
+  methods: {
+    helpToggle() {
+      this.helpDisplay = this.helpDisplay === "none" ? "block" : "none";
+      this.contentDisplay = this.contentDisplay === "flex" ? "none" : "flex";
+      this.helpButtonDisplay =
+        this.helpButtonDisplay === "block" ? "none" : "block";
+    },
   },
 };
 </script>
