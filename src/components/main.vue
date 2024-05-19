@@ -1,11 +1,12 @@
 <template>
   <div class="container">
     <div class="content" :style="{ display: contentDisplay }">
-      <h1 class="title">Binary converter</h1>
+      <h1 class="title">Binary Converter</h1>
       <div class="binary-input-row">
         <div class="inputs-row">
           <p>Numbers</p>
-          <input type="checkbox" id="switch" /><label for="switch"
+          <input type="checkbox" id="switch" v-model="isNumber" /><label
+            for="switch"
             >Toggle</label
           >
           <p>Letters</p>
@@ -13,12 +14,14 @@
             type="text"
             placeholder="Input binary here"
             class="binary-input"
+            v-model="binaryInput"
+            @input="convertBinary"
           />
         </div>
       </div>
       <div class="output-wrapper">
         <h2>Output:</h2>
-        <input class="output" disabled />
+        <input class="output" :value="output" disabled />
       </div>
     </div>
     <button
@@ -41,6 +44,9 @@ export default {
       helpDisplay: "none",
       contentDisplay: "flex",
       helpButtonDisplay: "block",
+      binaryInput: "",
+      output: "",
+      isNumber: false,
     };
   },
   components: {
@@ -52,6 +58,25 @@ export default {
       this.contentDisplay = this.contentDisplay === "flex" ? "none" : "flex";
       this.helpButtonDisplay =
         this.helpButtonDisplay === "block" ? "none" : "block";
+    },
+    convertBinary() {
+      if (this.isNumber) {
+        this.output = this.binaryToNumber(this.binaryInput);
+      } else {
+        this.output = this.binaryToText(this.binaryInput);
+      }
+    },
+    binaryToNumber(binary) {
+      return binary
+        .split(" ")
+        .map((bin) => parseInt(bin, 2))
+        .join(" ");
+    },
+    binaryToText(binary) {
+      return binary
+        .split(" ")
+        .map((bin) => String.fromCharCode(parseInt(bin, 2)))
+        .join("");
     },
   },
 };
