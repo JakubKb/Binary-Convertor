@@ -75,7 +75,10 @@ export default {
     binaryToText(binary) {
       return binary
         .split(" ")
-        .map((bin) => String.fromCharCode(parseInt(bin, 2)))
+        .map((bin) => {
+          let charCode = parseInt(bin, 2);
+          return isNaN(charCode) ? "" : String.fromCharCode(charCode);
+        })
         .join("");
     },
   },
